@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  odp-admin:
+    container_name: odp-admin
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    environment:
+      - FLASK_APP=odpadmin
+      - FLASK_ENV
+      - FLASK_SECRET_KEY
+      - FLASK_ADMIN_SWATCH=flatly
+      - DATABASE_URL
+      - HYDRA_PUBLIC_URL
+      - HYDRA_ADMIN_URL
+      - OAUTH2_CLIENT_ID=odp-admin
+      - OAUTH2_CLIENT_SECRET
+      - OAUTH2_SCOPES=openid ODP.Admin
+      - ADMIN_INSTITUTION=saeon
+      - ADMIN_ROLE=administrator
+      - ADMIN_SCOPE=ODP.Admin
+    restart: always
