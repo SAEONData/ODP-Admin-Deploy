@@ -4,7 +4,7 @@ Docker-based deployment of the [ODP Admin](https://github.com/SAEONData/ODP-Admi
 
 ## Installation
 
-Create a `.env` file and set the following environment variables:
+Create a `.env` file in the project directory on the target machine, and set the following environment variables:
 
 - **`FLASK_ENV`**: deployment environment: `development`|`testing`|`staging`|`production`
 - **`FLASK_SECRET_KEY`**: Flask [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY)
@@ -23,6 +23,18 @@ Start the admin service container in the background:
 Initialize the ODP accounts database:
 
     sudo docker exec odp-admin flask initdb
+
+## Upgrading
+
+In the project directory on the target machine, run:
+
+    git pull
+
+Update the `.env` file as necessary, then run:
+
+    sudo docker-compose down
+    sudo docker-compose build --no-cache
+    sudo docker-compose up -d
 
 ## Notes
 
